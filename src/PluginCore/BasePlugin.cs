@@ -62,38 +62,41 @@ namespace Powertoys.Run.Devbox.PluginCore
       Context.API.ThemeChanged += OnThemeChanged;
       UpdateIconPath(Context.API.GetCurrentTheme());
 
-      LoadSettings();
-    }
-    public void ReloadData()
-    {
-      LoadSettings();
-    }
-
-    private void LoadSettings()
-    {
       try
       {
-        storage = new SharedPluginStorage(Context.API);
-        settings = storage.Load();
-        var shouldSave = false;
-        if (string.IsNullOrEmpty(settings.GitFolder))
-        {
-          settings.GitFolder = defaultGitFolder;
-          shouldSave = true;
-        }
-        if (string.IsNullOrEmpty(settings.WslGitFolder))
-        {
-          settings.WslGitFolder = defaultWslGitFolder;
-          shouldSave = true;
-        }
-        if (shouldSave)
-        {
-          storage.Save();
-        }
+        ReloadData();
       }
       catch (Exception e)
       {
         storageException = e;
+      }
+    }
+    public void ReloadData()
+    {
+      LoadSettings();
+      OnReloadData();
+    }
+
+    public virtual void OnReloadData() { }
+
+    private void LoadSettings()
+    {
+      storage = new SharedPluginStorage(Context.API);
+      settings = storage.Load();
+      var shouldSave = false;
+      if (string.IsNullOrEmpty(settings.GitFolder))
+      {
+        settings.GitFolder = defaultGitFolder;
+        shouldSave = true;
+      }
+      if (string.IsNullOrEmpty(settings.WslGitFolder))
+      {
+        settings.WslGitFolder = defaultWslGitFolder;
+        shouldSave = true;
+      }
+      if (shouldSave)
+      {
+        storage.Save();
       }
     }
 

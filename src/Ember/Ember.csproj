@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+		<OutputPath>..\..\out\Ember\</OutputPath>
+    <DebugType>None</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\PluginCore\*.cs"/>
+		<Compile Include="..\PluginCore\Models\*.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+    <Reference Private="false" Include="PowerToys.Common.UI">
+      <HintPath>..\..\libs\PowerToys.Common.UI.dll</HintPath>
+    </Reference>
+    <Reference Private="false" Include="PowerToys.ManagedCommon">
+      <HintPath>..\..\libs\PowerToys.ManagedCommon.dll</HintPath>
+    </Reference>
+    <Reference Private="false" Include="Wox.Infrastructure">
+      <HintPath>..\..\libs\Wox.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Private="false" Include="Wox.Plugin">
+      <HintPath>..\..\libs\Wox.Plugin.dll</HintPath>
+    </Reference>
+	</ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\images\*.*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\node_modules\ember-rfc176-data\mappings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Update="plugin.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

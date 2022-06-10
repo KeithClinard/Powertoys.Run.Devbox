@@ -6,6 +6,11 @@
 # Build Output
 out
 
+# Node Dependencies
+yarn.lock
+package-lock.json
+node_modules
+
 # Code Coverage
 coverage.json
 coverage.cobertura.xml

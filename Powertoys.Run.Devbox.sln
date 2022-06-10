@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9D2BEDB9-227
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Settings", "src\Settings\Settings.csproj", "{A70016DA-B8D7-4621-928F-283826CDF458}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ember", "src\Ember\Ember.csproj", "{A5126E7B-0154-4CF1-83ED-80DAFE4AB340}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +34,13 @@ Global
 		{A70016DA-B8D7-4621-928F-283826CDF458}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A70016DA-B8D7-4621-928F-283826CDF458}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A70016DA-B8D7-4621-928F-283826CDF458}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5126E7B-0154-4CF1-83ED-80DAFE4AB340}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5126E7B-0154-4CF1-83ED-80DAFE4AB340}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5126E7B-0154-4CF1-83ED-80DAFE4AB340}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5126E7B-0154-4CF1-83ED-80DAFE4AB340}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A70016DA-B8D7-4621-928F-283826CDF458} = {9D2BEDB9-2275-4786-83C4-C46946100CCE}
+		{A5126E7B-0154-4CF1-83ED-80DAFE4AB340} = {9D2BEDB9-2275-4786-83C4-C46946100CCE}
 	EndGlobalSection
 EndGlobal

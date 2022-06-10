@@ -1,0 +1,14 @@
+{
+  "ID": "26BBE52EC0A14D38AB848FA5F0C27EB5",
+  "Disabled": false,
+  "ActionKeyword": "ember",
+  "Name": "Devbox - Ember",
+  "Author": "KeithClinard",
+  "Version": "1.0.0",
+  "Language": "csharp",
+  "Website": "https://github.com/KeithClinard/Powertoys.Run.Devbox",
+  "ExecuteFileName": "Ember.dll",
+  "IsGlobal": false,
+  "IcoPathDark": "icon.dark.png",
+  "IcoPathLight": "icon.light.png"
+}

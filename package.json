@@ -1,0 +1,9 @@
+{
+  "name": "powertoys.run.devbox",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "dependencies": {
+    "ember-rfc176-data": "0.3.17"
+  }
+}
