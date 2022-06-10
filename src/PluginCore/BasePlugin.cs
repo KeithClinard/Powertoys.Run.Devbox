@@ -1,120 +1,115 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using ManagedCommon;
 using Powertoys.Run.Devbox.PluginCore.Models;
-using Wox.Infrastructure.Storage;
 using Wox.Plugin;
 
-namespace Powertoys.Run.Devbox.PluginCore
+namespace Powertoys.Run.Devbox.PluginCore;
+
+public abstract class BasePlugin : IPlugin, IReloadable
 {
-  public abstract class BasePlugin : IPlugin, IReloadable
+
+  private const string _defaultGitFolder = @"C:\git";
+  private const string _defaultWslGitFolder = "/git";
+
+  public string IconPath { get; set; }
+
+  public PluginInitContext Context { get; set; }
+
+  private Exception _storageException;
+  public SettingsModel settings;
+  public SharedPluginStorage storage;
+
+  public virtual string Name => "CorePlugin";
+  public virtual string Description => "Common code for devbox plugins";
+
+  public List<Result> Query(Query query)
   {
-
-    private const string defaultGitFolder = @"C:\git";
-    private const string defaultWslGitFolder = "/git";
-
-    public string IconPath { get; set; }
-
-    public PluginInitContext Context { get; set; }
-
-    private Exception storageException = null;
-    public SettingsModel settings;
-    public SharedPluginStorage storage;
-
-    public virtual string Name => "CorePlugin";
-    public virtual string Description => "Common code for devbox plugins";
-
-    public List<Result> Query(Query query)
+    if (_storageException != null)
     {
-      if (storageException != null)
+      var list = new List<Result>
       {
-        List<Result> list = new List<Result>();
-        list.Add(new Result
+        new Result
         {
           Title = "Error loading storage",
-          SubTitle = storageException.Message,
+          SubTitle = _storageException.Message,
           IcoPath = IconPath
-        });
-        return list;
-      }
-      try
+        }
+      };
+      return list;
+    }
+    try
+    {
+      return OnQuery(query);
+    }
+    catch (Exception e)
+    {
+      var list = new List<Result>
       {
-        return OnQuery(query);
-      }
-      catch (Exception e)
-      {
-        List<Result> list = new List<Result>();
-        list.Add(new Result
+        new Result
         {
           Title = "Devbox Plugin",
           SubTitle = "Error during query: " + e.Message,
           IcoPath = IconPath
-        });
-        return list;
-      }
+        }
+      };
+      return list;
     }
+  }
 
-    public abstract List<Result> OnQuery(Query query);
+  public abstract List<Result> OnQuery(Query query);
 
-    public void Init(PluginInitContext context)
+  public void Init(PluginInitContext context)
+  {
+    Context = context;
+    Context.API.ThemeChanged += OnThemeChanged;
+    UpdateIconPath(Context.API.GetCurrentTheme());
+
+    try
     {
-      Context = context;
-      Context.API.ThemeChanged += OnThemeChanged;
-      UpdateIconPath(Context.API.GetCurrentTheme());
-
-      try
-      {
-        ReloadData();
-      }
-      catch (Exception e)
-      {
-        storageException = e;
-      }
+      ReloadData();
     }
-    public void ReloadData()
+    catch (Exception e)
     {
-      LoadSettings();
-      OnReloadData();
+      _storageException = e;
     }
+  }
+  public void ReloadData()
+  {
+    LoadSettings();
+    OnReloadData();
+  }
 
-    public virtual void OnReloadData() { }
+  public virtual void OnReloadData() { }
 
-    private void LoadSettings()
+  private void LoadSettings()
+  {
+    storage = new SharedPluginStorage(Context.API);
+    settings = storage.Load();
+    var shouldSave = false;
+    if (string.IsNullOrEmpty(settings.GitFolder))
     {
-      storage = new SharedPluginStorage(Context.API);
-      settings = storage.Load();
-      var shouldSave = false;
-      if (string.IsNullOrEmpty(settings.GitFolder))
-      {
-        settings.GitFolder = defaultGitFolder;
-        shouldSave = true;
-      }
-      if (string.IsNullOrEmpty(settings.WslGitFolder))
-      {
-        settings.WslGitFolder = defaultWslGitFolder;
-        shouldSave = true;
-      }
-      if (shouldSave)
-      {
-        storage.Save();
-      }
+      settings.GitFolder = _defaultGitFolder;
+      shouldSave = true;
     }
-
-    private void UpdateIconPath(Theme theme)
+    if (string.IsNullOrEmpty(settings.WslGitFolder))
     {
-      if (theme == Theme.Light || theme == Theme.HighContrastWhite)
-      {
-        IconPath = "icon.light.png";
-      }
-      else
-      {
-        IconPath = "icon.dark.png";
-      }
+      settings.WslGitFolder = _defaultWslGitFolder;
+      shouldSave = true;
     }
-
-    private void OnThemeChanged(Theme currentTheme, Theme newTheme)
+    if (shouldSave)
     {
-      UpdateIconPath(newTheme);
+      storage.Save();
     }
+  }
+
+  private void UpdateIconPath(Theme theme)
+  {
+    IconPath = theme is Theme.Light or Theme.HighContrastWhite ? "icon.light.png" : "icon.dark.png";
+  }
+
+  private void OnThemeChanged(Theme currentTheme, Theme newTheme)
+  {
+    UpdateIconPath(newTheme);
   }
 }

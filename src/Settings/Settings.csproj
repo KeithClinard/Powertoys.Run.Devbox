@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>10</LangVersion>
 		<OutputPath>..\..\out\Settings\</OutputPath>
     <DebugType>None</DebugType>
 		<DebugSymbols>false</DebugSymbols>
@@ -11,6 +12,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\PluginCore\PluginCore.csproj" ReferenceOutputAssembly="false"/>
 		<Compile Include="..\PluginCore\*.cs"/>
 		<Compile Include="..\PluginCore\Models\*.cs" />
 	</ItemGroup>
