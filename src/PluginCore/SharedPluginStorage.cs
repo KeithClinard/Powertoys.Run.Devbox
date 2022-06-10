@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using ManagedCommon;
-using Powertoys.Run.Devbox.Core;
-using Powertoys.Run.Devbox.Core.Models;
+using Powertoys.Run.Devbox.PluginCore;
+using Powertoys.Run.Devbox.PluginCore.Models;
 using Wox.Infrastructure;
 using Wox.Infrastructure.Storage;
 using Wox.Infrastructure.UserSettings;
 using Wox.Plugin;
 
-namespace Powertoys.Run.Devbox.Core
+namespace Powertoys.Run.Devbox.PluginCore
 {
   public class SharedPluginStorage : JsonStorage<SettingsModel>
   {

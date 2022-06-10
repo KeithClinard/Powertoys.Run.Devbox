@@ -1,13 +1,13 @@
 {
-  "ID": "7D5B143FA619456EA17832A58D8C4D2A",
+  "ID": "834F6528BBB24192804BB51721BD6D24",
   "Disabled": false,
-  "ActionKeyword": "c",
-  "Name": "Devbox - VsCode",
+  "ActionKeyword": "db",
+  "Name": "Devbox - Settings",
   "Author": "KeithClinard",
   "Version": "1.0.0",
   "Language": "csharp",
   "Website": "https://github.com/KeithClinard/Powertoys.Run.Devbox",
-  "ExecuteFileName": "VsCode.dll",
+  "ExecuteFileName": "Settings.dll",
   "IsGlobal": false,
   "IcoPathDark": "icon.dark.png",
   "IcoPathLight": "icon.light.png"

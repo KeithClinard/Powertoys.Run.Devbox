@@ -1,4 +1,4 @@
-﻿namespace Powertoys.Run.Devbox.Core.Models
+﻿namespace Powertoys.Run.Devbox.PluginCore.Models
 {
   public class ApiResultOwner
   {

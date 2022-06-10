@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-		<OutputPath>..\..\out\VSCode\</OutputPath>
+		<OutputPath>..\..\out\Settings\</OutputPath>
     <DebugType>None</DebugType>
 		<DebugSymbols>false</DebugSymbols>
     <GenerateDependencyFile>false</GenerateDependencyFile>

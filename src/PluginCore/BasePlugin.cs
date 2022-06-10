@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using ManagedCommon;
-using Powertoys.Run.Devbox.Core.Models;
+using Powertoys.Run.Devbox.PluginCore.Models;
 using Wox.Infrastructure.Storage;
 using Wox.Plugin;
 
-namespace Powertoys.Run.Devbox.Core
+namespace Powertoys.Run.Devbox.PluginCore
 {
-  public abstract class CorePlugin : IPlugin, IReloadable
+  public abstract class BasePlugin : IPlugin, IReloadable
   {
 
-    private const string defaultGitFolder = @"F:\git";
+    private const string defaultGitFolder = @"C:\git";
     private const string defaultWslGitFolder = "/git";
 
     public string IconPath { get; set; }
@@ -101,11 +101,11 @@ namespace Powertoys.Run.Devbox.Core
     {
       if (theme == Theme.Light || theme == Theme.HighContrastWhite)
       {
-        IconPath = "images/icon.light.png";
+        IconPath = "icon.light.png";
       }
       else
       {
-        IconPath = "images/icon.dark.png";
+        IconPath = "icon.dark.png";
       }
     }
 
