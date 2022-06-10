@@ -1,0 +1,14 @@
+{
+  "ID": "C8EDB3E1964443029C419CDA8D8BCFC2",
+  "Disabled": false,
+  "ActionKeyword": "c",
+  "Name": "VsCode",
+  "Author": "KeithClinard",
+  "Version": "1.0.0",
+  "Language": "csharp",
+  "Website": "https://github.com/KeithClinard/Powertoys.Run.Devbox",
+  "ExecuteFileName": "Powertoys.Run.Devbox.Core.dll",
+  "IsGlobal": false,
+  "IcoPathDark": "icon.dark.png",
+  "IcoPathLight": "icon.light.png"
+}
